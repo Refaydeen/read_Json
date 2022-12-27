@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue
+          primarySwatch: Colors.blue
       ),
       home: MyHomePage(),
     );
@@ -34,9 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      title: Text('Home Screen'),
-      backgroundColor: Colors.redAccent,
-    ),
+        title: Text('Home Screen'),
+        backgroundColor: Colors.redAccent,
+      ),
       backgroundColor: Colors.white,
       body: FutureBuilder(
         future: readJsonData(),
@@ -48,52 +48,52 @@ class _MyHomePageState extends State<MyHomePage> {
             return ListView.builder(
                 itemCount: items==null? 0:items.length,
                 itemBuilder: (context, index) {
-              return Card(
-                elevation: 5,
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                child: Container(
-                  padding: EdgeInsets.all(8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 50,
-                        height: 50,
-                        child: Image(
-                          image: NetworkImage(
-                            items[index].imageUrl.toString(),
-                          ),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.only(bottom: 8),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(left: 8, right: 8),
-                                child: Text(items[index].name.toString(),style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),),
+                  return Card(
+                    elevation: 5,
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 50,
+                            height: 50,
+                            child: Image(
+                              image: NetworkImage(
+                                items[index].imageUrl.toString(),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 8, right: 8),
-                                child: Text(items[index].price.toString()),
-                              )
-                            ],
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                        ),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.only(bottom: 8),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 8, right: 8),
+                                    child: Text(items[index].name.toString(),style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 8, right: 8),
+                                    child: Text(items[index].price.toString()),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-              );
-            });
+                    ),
+                  );
+                });
           } else {
             return Center(
               child: CircularProgressIndicator(),
@@ -106,10 +106,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<List<Product>> readJsonData() async {
     final jsonData =
-    await root.rootBundle.loadString('jsonFile/productList.json');
+    await root.rootBundle.loadString('jsonFile/product.json');
     final list = json.decode(jsonData) as List<dynamic>;
     return list.map((e) => Product.fromJson(e)).toList();
   }
 }
-
 
